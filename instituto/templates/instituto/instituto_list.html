@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Listado de Institutos</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f2f2f2;
+            text-align: center;
+            margin: 50px;
+        }
+
+        h1 {
+            color: #333;
+        }
+
+        table {
+            width: 80%;
+            margin: 20px auto;
+            border-collapse: collapse;
+            background-color: #fff;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        th, td {
+            padding: 15px;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+        }
+
+        th {
+            background-color: #007BFF;
+            color: #fff;
+        }
+
+        tr:hover {
+            background-color: #f5f5f5;
+        }
+
+        a {
+            text-decoration: none;
+            display: inline-block;
+            padding: 10px 20px;
+            margin: 10px;
+            background-color: #007BFF;
+            color: #fff;
+            border-radius: 5px;
+            transition: background-color 0.3s;
+            font-weight: bold;
+        }
+
+        a:hover {
+            background-color: #0056b3;
+        }
+        button
+        {
+            background-color: transparent;
+            border: none;
+            color: white;
+        }
+    </style>
+</head>
+<body>
+    <h1>Listado de Institutos</h1>
+    
+    <table border="1">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Instituto</th>
+                <th>Dirección</th>
+                <th>Teléfono</th>
+                <th>Acciones</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for instituto in institutos %}
+                <tr>
+                    <td>{{ instituto.id }}</td>
+                    <td>{{ instituto.nombre }}</td>
+                    <td>{{ instituto.direccion }}</td>
+                    <td>{{ instituto.telefono }}</td>
+                    <td>
+                        <a href="{% url 'instituto_update' id=instituto.id %}"><button>Editar</button></a>
+                        <a href="{% url 'instituto_delete' id=instituto.id %}"><button>Borrar</button></a>
+                    </td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+    <!-- Botón para crear un nuevo instituto -->
+    <a href="{% url 'instituto_create' %}"><button>Crear Instituto</button></a>
+    <a href="{% url 'home' %}"><button>Volver al Home</button></a>
+</body>
+</html>
